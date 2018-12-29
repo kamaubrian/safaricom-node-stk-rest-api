@@ -34,7 +34,7 @@
     }
   },
   "definitions": {
-    "Admin":{
+    "STK":{
       "type":"object",
       "required":{
         "amount":"Requires Amount",

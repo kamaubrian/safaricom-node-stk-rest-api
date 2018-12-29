@@ -7,8 +7,8 @@ A Restful API to Trigger STK Push 💰💰 🤑🤑
   {
     "amount": "50",
     "accountReference": "test",
-    "callBackURL": "http://some-url",
+    "callBackURL": "http://callbackurl.com/callback",
     "description": "test",
     "phoneNumber": "254718532498"
   }       
-     ```
+     
