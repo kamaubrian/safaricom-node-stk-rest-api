@@ -21,7 +21,7 @@ function httpResponseBodyProcessor(responseData,req,res,next){
   if(!responseData.body.fault && ! responseData.body.errorCode && !responseData.error && !isEmpty(responseData.body.status)){
     console.log('POST Response ' + JSON.stringify(responseData.body));
     req.transactionResponse =responseData.body
-    return next();
+    next();
   }else{
     console.log('Error Occurred',JSON.stringify(responseData.body));
     return res.status(200)
