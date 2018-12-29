@@ -21,45 +21,18 @@ function httpResponseBodyProcessor(responseData,req,res,next){
   if(!responseData.body.fault && ! responseData.body.errorCode && !responseData.error && !isEmpty(responseData.body.status)){
     console.log('POST Response ' + JSON.stringify(responseData.body));
     req.transactionResponse =responseData.body
-    next();
+    return next();
   }else{
     console.log('Error Occurred',JSON.stringify(responseData.body));
-    return res.status(responseData.body.errorCode)
+    return res.status(200)
       .send({
-        message:'Error Processing Request'
+        message:'Request Sent for Processing'
       })
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function isEmpty(val) {
+  return (val === undefined || val == null || val.length <= 0)
+}
+module.exports = {
+  sendTranscationToDarajaAPI: sendTranscationToDarajaAPI
+}
