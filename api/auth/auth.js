@@ -17,13 +17,20 @@ let fetchToken = (req,res,next)=>{
           req.transactionToken = records.accessToken;
           next();
         }else{
-
+          console.log('Token Has Expired');
+          setNewAccessToken(req,res,serviceName,false,next);
         }
+      }else{
+        console.log('Token Does not Exist');
+        setNewAccessToken(req,res,serviceName,true,next);
       }
     })
     .catch(err=>{
-      console.log('Error Fetching Records');
-      return res.status(500).send({});
+      console.log('Error Fetching Records',err.message);
+      return res.status(500).send({
+        message:'Error Fetching Records',
+        error:err.message
+      });
     })
 };
 
@@ -63,12 +70,46 @@ let setNewAccessToken = function(req,res,serviceName,newInstance,next){
       };
       if(newInstance){
         token = new Token(newToken);
-
+        token.save()
+          .then(result=>{
+              req.transactionToken = token.accessToken;
+              next();
+          })
+          .catch(err=>{
+            console.log('Error Saving Record',err.message);
+            return res.status(500)
+              .send({
+                message:'Error Saving Token Record',
+                error:err.message
+              })
+          });
       }else{
+        var conditions = {service:serviceName};
+        var options = {multi:true};
 
+        Token.update(conditions,newToken,options,function(err,record){
+          if(err){
+            console.log('Unable to Update Token ',err.message);
+            return res.status(500).send({
+              message:'Error Handling Update Tokens',
+              error:err.message
+            })
+          }else{
+            if(record){
+              req.transactionToken = newToken.accessToken;
+            }
+          }
+          next();
+        })
       }
+    }else{
+      console.log('Error Fetching Response',tokenResponse.errorCode);
+      return res.status(500).send({
+        message:'Error Getting Daraja Response',
+        error:tokenResponse.error.message
+      })
     }
-  })
-
+  });
 
 };
+module.exports = fetchToken;
