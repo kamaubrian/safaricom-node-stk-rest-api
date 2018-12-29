@@ -9,7 +9,8 @@ require('dotenv').config();
 let fetchToken = (req,res,next)=>{
   console.log('Getting Token');
   let serviceName = req.body.service;
-  Token.findOne({service:serviceName})
+  setNewAccessToken(req,res,serviceName,true,next);
+  /*Token.findOne({service:serviceName})
     .then(records=>{
       if(records){
         if(isTokenValid(records)){
@@ -31,7 +32,7 @@ let fetchToken = (req,res,next)=>{
         message:'Error Fetching Records',
         error:err.message
       });
-    })
+    })*/
 };
 
 let isTokenValid = function(service){
