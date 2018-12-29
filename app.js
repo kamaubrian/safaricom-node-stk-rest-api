@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const stkRoutes = require('./api/routes/index');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
@@ -19,6 +20,11 @@ mongoose.connect(process.env.MONGODB_URL,{useNewUrlParser:true},(err)=>{
     throw new Error(err.message);
   }
   console.log('MongoDB Connected Successfully');
+});
+
+app.use('/',stkRoutes);
+app.use('/favicon.ico',(req,res)=>{
+    res.status(200).send({});
 });
 
 
