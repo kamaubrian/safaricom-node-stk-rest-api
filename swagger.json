@@ -1,0 +1,55 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v0.0.1-alpha-1",
+    "title": "Safaricom STKPush Node Rest API",
+    "description": "A Restful API to Trigger STK Push"
+  },
+  "schemes": [
+    "https","http"
+  ],
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/v1/stkpush/process/": {
+      "post": {
+        "summary": "STK Push",
+        "description": "Initiates an STK Push",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Stk Push",
+            "description": "Parameters",
+            "schema": {
+              "$ref": "#/definitions/Admin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "STK Push on Phone"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Admin":{
+      "type":"object",
+      "required":{
+        "amount":"Requires Amount",
+        "accountReference": "test",
+        "callbackUrl": "https://callbackurl.com",
+        "description": "test",
+        "phoneNumber": "Enter PhoneNumber <2547....>"
+      },
+      "properties":{
+        "amount":{"type":"string"},
+        "accountReference": {"type":"string"},
+        "callbackUrl": {"type":"string"},
+        "description": {"type":"string"},
+        "phoneNumber": {"type":"string"}
+      }
+    }
+  }
+}

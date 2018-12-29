@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const stkRoutes = require('./api/routes/index');
+var swaggerUi = require('swagger-ui-express'),
+  swaggerDocument = require('./swagger.json');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
@@ -22,7 +24,10 @@ mongoose.connect(process.env.MONGODB_URL,{useNewUrlParser:true},(err)=>{
   console.log('MongoDB Connected Successfully');
 });
 
-app.use('/',stkRoutes);
+app.use('/api/v1/stkpush/',stkRoutes);
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 app.use('/favicon.ico',(req,res)=>{
     res.status(200).send({});
 });
