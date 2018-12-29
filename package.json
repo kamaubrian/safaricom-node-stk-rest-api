@@ -1,0 +1,44 @@
+{
+  "name": "mpesastkpush",
+  "version": "0.0.1-alpha-release.1",
+  "description": "A Express Js Application to create Safaricom Stk Push",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha -- api/**/test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtotodev05/SafaricomStk.git"
+  },
+  "keywords": [
+    "stkpush",
+    "daraja-api",
+    "node-js",
+    "mongo",
+    "express"
+  ],
+  "author": "Kamau Brian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mtotodev05/SafaricomStk/issues"
+  },
+  "homepage": "https://github.com/mtotodev05/SafaricomStk#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.16.4",
+    "moment": "^2.23.0",
+    "mongoose": "^5.4.1",
+    "morgan": "^1.9.1",
+    "nconf": "^0.10.0",
+    "nodemon": "^1.18.9",
+    "request": "^2.88.0",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
