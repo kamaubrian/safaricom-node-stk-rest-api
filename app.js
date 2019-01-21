@@ -10,6 +10,8 @@ const stkRoutes = require('./api/routes/index');
 var swaggerUi = require('swagger-ui-express'),
   swaggerDocument = require('./swagger.json');
 
+const graphqlHttp = require('express-graphql');
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());

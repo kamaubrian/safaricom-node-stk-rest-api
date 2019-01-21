@@ -10,29 +10,7 @@ let fetchToken = (req,res,next)=>{
   console.log('Getting Token');
   let serviceName = req.body.service;
   setNewAccessToken(req,res,serviceName,true,next);
-  /*Token.findOne({service:serviceName})
-    .then(records=>{
-      if(records){
-        if(isTokenValid(records)){
-          console.log('Token is Still Valid');
-          req.transactionToken = records.accessToken;
-          next();
-        }else{
-          console.log('Token Has Expired');
-          setNewAccessToken(req,res,serviceName,false,next);
-        }
-      }else{
-        console.log('Token Does not Exist');
-        setNewAccessToken(req,res,serviceName,true,next);
-      }
-    })
-    .catch(err=>{
-      console.log('Error Fetching Records',err.message);
-      return res.status(500).send({
-        message:'Error Fetching Records',
-        error:err.message
-      });
-    })*/
+
 };
 
 let isTokenValid = function(service){
