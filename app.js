@@ -11,6 +11,8 @@ var swaggerUi = require('swagger-ui-express'),
   swaggerDocument = require('./swagger.json');
 
 const graphqlHttp = require('express-graphql');
+const graphqlResolvers = require('./api/graphql/resolvers/index');
+const graphqlSchemas = require('./api/graphql/schemas/index');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
@@ -29,6 +31,11 @@ mongoose.connect(process.env.MONGODB_URL,{useNewUrlParser:true},(err)=>{
 app.use('/api/v1/stkpush/',stkRoutes);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use('/graphql',graphqlHttp({
+  schema: graphqlSchemas,
+  rootValue: graphqlResolvers,
+  graphiql:true
+}))
 
 app.use('/favicon.ico',(req,res)=>{
     res.status(200).send({});

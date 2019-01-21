@@ -6,9 +6,9 @@ const GENERIC_SERVER_ERROR_CODE = '01';
 const Token = require('../model/token');
 require('dotenv').config();
 
-let fetchToken = (req,res,next)=>{
+fetchToken = (req,res,next)=>{
   console.log('Getting Token');
-  let serviceName = req.body.service;
+  let serviceName = req.service;
   setNewAccessToken(req,res,serviceName,true,next);
 
 };
@@ -91,4 +91,6 @@ let setNewAccessToken = function(req,res,serviceName,newInstance,next){
   });
 
 };
-module.exports = fetchToken;
+module.exports = {
+  fetchToken: fetchToken
+};
