@@ -4,7 +4,7 @@ const LIPA_NA_MPESA_STK = 'STK-PUSH'
 require('dotenv').config()
 
 exports.initiateRequest = function (req, res, next) {
-  req.body.service = LIPA_NA_MPESA_STK
+  req.service = LIPA_NA_MPESA_STK
   let _this = req.body
   if (!(_this.amount || _this.phoneNumber || _this.callBackURL || _this.accountReference || _this.description)) {
     return res.status(500).send({
