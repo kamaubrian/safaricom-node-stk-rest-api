@@ -21,7 +21,7 @@
             "name": "Stk Push",
             "description": "Parameters",
             "schema": {
-              "$ref": "#/definitions/Admin"
+              "$ref": "#/definitions/STK"
             }
           }
         ],
