@@ -8,7 +8,7 @@
   "schemes": [
     "https","http"
   ],
-  "host": "safaricom-node-stk.herokuapp.com",
+  "host": "node-stkpush-api.herokuapp.com",
   "basePath": "/api",
   "paths": {
     "/v1/stkpush/process/": {
