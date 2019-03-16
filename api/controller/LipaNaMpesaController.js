@@ -24,7 +24,7 @@ exports.initiateRequest = function (req, res, next) {
     PartyA: _this.phoneNumber,
     PartyB: BusinessShortCode,
     PhoneNumber: _this.phoneNumber,
-    CallBackURL: process.env.CALLBACK_URL,
+    CallBackURL: _this.callBackURL,
     AccountReference: _this.accountReference,
     TransactionDesc: _this.description
   }
